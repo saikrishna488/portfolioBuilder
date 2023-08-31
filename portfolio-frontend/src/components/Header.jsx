@@ -1,7 +1,7 @@
 "use client";
 import React, { useContext } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
-import { globalContext } from '@/contextApi/GlobalContext';
+import { globalContext } from '../contextApi/GlobalContext';
 
 const Header = () => {
     const router = useRouter();
