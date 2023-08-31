@@ -1,10 +1,10 @@
 "use client"
-import { useContext } from 'react'
-import Main from '@/components/Main'
-import Portfolio from '@/components/Portfolio'
-import Resume from '@/components/Resume'
-import Score from '@/components/Score'
-import { globalContext } from '@/contextApi/GlobalContext';
+import { useContext } from 'react';
+import Main from '../components/Main'
+import Portfolio from '../components/Portfolio'
+import Resume from '../components/Resume'
+import Score from '../components/Score'
+import { globalContext } from '../contextApi/GlobalContext';
 
 
 export default function Home() {
