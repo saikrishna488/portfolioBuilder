@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useContext, useEffect } from 'react';
 import { toast } from 'react-toastify';
-import { globalContext } from '@/contextApi/GlobalContext';
+import { globalContext } from '../../contextApi/GlobalContext';
 
 const page = () => {
 
