@@ -280,7 +280,7 @@ router.post('/portfolio',async (req,res)=>{
             fs.writeFileSync('public/'+name+"/index.html",data);
             res.json({
                 message : true,
-                url : "captenoid"
+                url : name
             })
             console.log("site created");
         }
