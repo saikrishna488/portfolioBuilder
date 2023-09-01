@@ -31,7 +31,7 @@ const Header = () => {
                     <li className='button' onClick={() => router.push('/login')}>Login</li>
                     <li className='button' onClick={() => router.push('/register')}>Signup</li>
                     <li className='templates' id='port' onClick={home}>Home</li>
-                    <img src="https://w7.pngwing.com/pngs/1003/487/png-transparent-github-pages-random-icons-white-logo-monochrome.png" alt="loading" />
+                    <img src="logo.png" alt="loading" />
                 </ul>
             </div>
         )
@@ -64,7 +64,7 @@ const Header = () => {
                     }
                     <li className='templates' id='port' onClick={portfolio}>Portfolio</li>
                     <li className='templates' onClick={resume}>Resume</li>
-                    <img src="https://w7.pngwing.com/pngs/1003/487/png-transparent-github-pages-random-icons-white-logo-monochrome.png" alt="loading" />
+                    <img src="logo.png" alt="loading" />
                 </ul>
             </div>
         )

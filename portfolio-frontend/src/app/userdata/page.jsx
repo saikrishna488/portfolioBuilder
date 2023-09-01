@@ -13,16 +13,16 @@ const page = () => {
     const [college, setCollege] = useState("");
     const { user, data, setData } = useContext(globalContext);
 
-    // useEffect(() => {
-    //     if (data.name) {
-    //         setName(data.name);
-    //         setDescription(data.description);
-    //         setSkills(data.skills);
-    //         setCertifications(data.certifications);
-    //         setProjects(data.projects);
-    //         setCollege(data.college);
-    //     }
-    // })
+    useEffect(() => {
+        // if (data.name) {
+        //     setName(data.name);
+        //     setDescription(data.description);
+        //     setSkills(data.skills);
+        //     setCertifications(data.certifications);
+        //     setProjects(data.projects);
+        //     setCollege(data.college);
+        // }
+    })
 
 
 
@@ -39,6 +39,7 @@ const page = () => {
                 id: user.username
             }
 
+            console.log(obj);
             try {
                 if (!user.username) {
                     throw new Error("not logged in");
@@ -57,6 +58,7 @@ const page = () => {
                         toast("Data updated now you can create portfolio/resume");
                     }
                     else {
+                        toast("Please login to continue");
                         throw new Error("err");
                     }
                 })

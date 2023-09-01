@@ -36,7 +36,8 @@ const Portfolio = () => {
 
     const build = async () => {
         try {
-            if (data.name) {
+            if (data.id) {
+                console.log(data);
                 let res = await fetch('https://backend-portfoliobuilder.onrender.com/portfolio',{
                     method : 'POST',
                     headers: {
@@ -51,9 +52,13 @@ const Portfolio = () => {
                     window.open("https://backend-portfoliobuilder.onrender.com/"+d.url, '_blank');
                 }
             }
+            else{
+                console.log("err");
+            }
         }
         catch(err){
             console.log(err);
+            toast("error");
         }
         
     }

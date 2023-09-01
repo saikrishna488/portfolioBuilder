@@ -3,7 +3,8 @@ import { useContext } from 'react';
 import Main from '../components/Main'
 import Portfolio from '../components/Portfolio'
 import Resume from '../components/Resume'
-import Score from '../components/Score'
+import Score from '../components/Score';
+import Copyright from '../components/Copyright'
 import { globalContext } from '../contextApi/GlobalContext';
 
 
@@ -55,12 +56,13 @@ export default function Home() {
             }).then((data) => {
               if(data.name){
                 setData(data);
+                console.log(data);
               }
             });
           });
         }
         catch (err) {
-
+          console.log(err);
         }
       }
     }
@@ -75,6 +77,7 @@ export default function Home() {
       <Portfolio />
       <Resume />
       <Score />
+      <Copyright/>
     </>
   )
 }
