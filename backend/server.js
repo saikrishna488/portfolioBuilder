@@ -5,7 +5,7 @@ const fs = require('fs');
 const multer = require('multer');
 const upload = multer({ dest: 'uploads/' });
 const pdfParser = require('pdf-parse');
-const port = 5000;
+const port = 5000 || process.env.PORT;
 require('dotenv').config();
 
 const temp = require('./models/templates');
