@@ -269,7 +269,7 @@ router.get('/portfolio',async (req,res)=>{
 router.post('/portfolio',async (req,res)=>{
     try{
         if(req.body.name){
-            // let {name,decription,skills, certifications, projects, college } = req.body;
+            let {name} = req.body;
             if(fs.existsSync('public/'+name)){
                 console.log("already exists");
             }
@@ -288,7 +288,7 @@ router.post('/portfolio',async (req,res)=>{
             res.json({
                 message : false
             })
-            console.log("body not received");
+            console.log("failed");
         }
     }
     catch(err){
