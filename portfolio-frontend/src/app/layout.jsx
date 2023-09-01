@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import GlobalContext from '../contextApi/GlobalContext';
 import Header from '../components/Header';
 import Toastify from '../components/Toastify';
+import Title from '../components/Title'
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -26,6 +27,7 @@ export default function RootLayout({ children }) {
         <GlobalContext>
           <Toastify/>
           <Header/>
+          <Title/>
           {children}
         </GlobalContext>
       </body>

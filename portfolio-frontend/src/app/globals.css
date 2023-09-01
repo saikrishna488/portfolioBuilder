@@ -1,8 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 body{
   margin: 0px;
   padding: 0px;
   font-family: 'Bebas Neue', sans-serif;
+  background-color: #03001C !important;
 }
 .header{
   background-color: #03001C;
@@ -74,7 +76,6 @@ body{
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  margin-top: 60px;
   color: white;
 }
 
@@ -192,6 +193,7 @@ body{
   height: 300px;
   justify-content: center;
   align-items: center;
+  color: white;
 }
 
 #file{
@@ -236,7 +238,7 @@ body{
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 100%;
   background-color:#03001C;
   color: white;
 }
@@ -353,6 +355,23 @@ body{
     min-width: 390px;
   }
   body{
-    min-width: 390px;
+    min-width: 390px !important;
   }
+}
+
+@media (max-width: 459px) {
+  .title{
+    margin-top: 150px !important;
+  }
+}
+
+.title{
+  background-color: #03001C;
+  color: white;
+  margin-top: 100px;
+  margin-bottom: 0px;
+  text-align: center;
+  margin-bottom: 10px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 40px;
 }
