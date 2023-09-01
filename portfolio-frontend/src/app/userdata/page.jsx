@@ -43,7 +43,7 @@ const page = () => {
                 if (!user.username) {
                     throw new Error("not logged in");
                 }
-                fetch('http://localhost:5000/userdata', {
+                fetch('https://backend-portfoliobuilder.onrender.com/userdata', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
