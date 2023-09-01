@@ -10,7 +10,7 @@ const Portfolio = () => {
     const [portfolio, setPortfolio] = useState([]);
     useEffect(() => {
         const fetchAll = () => {
-            fetch('http://localhost:5000/portfolio', {
+            fetch('https://backend-portfoliobuilder.onrender.com/portfolio', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json'
