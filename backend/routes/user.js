@@ -288,14 +288,14 @@ router.post('/portfolio',async (req,res)=>{
             res.json({
                 message : false
             })
-            console.log("failed");
+            console.log("body not received");
         }
     }
     catch(err){
         res.json({
             message : false
         })
-        console.log("failed");
+        console.log(err);
     }
 });
 
