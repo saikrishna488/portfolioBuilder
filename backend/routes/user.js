@@ -267,25 +267,35 @@ router.get('/portfolio',async (req,res)=>{
 });
 
 router.post('/portfolio',async (req,res)=>{
-    if(req.body.name){
-        let {name,decription,skills, certifications, projects, college } = req.body
-        if(fs.existsSync('public/'+name)){
-            console.log("already exists");
+    try{
+        if(req.body.name){
+            // let {name,decription,skills, certifications, projects, college } = req.body;
+            if(fs.existsSync('public/'+name)){
+                console.log("already exists");
+            }
+            else{
+                fs.mkdirSync('public/'+name);
+            }
+            let data = portfolios(name,req.body);
+            fs.writeFileSync('public/'+name+"/index.html",data);
+            res.json({
+                message : true,
+                url : "captenoid"
+            })
+            console.log("site created");
         }
         else{
-            fs.mkdirSync('public/'+name);
+            res.json({
+                message : false
+            })
+            console.log("failed");
         }
-        let data = portfolios(name,req.body);
-        fs.writeFileSync('public/'+name+"/index.html",data);
-        res.json({
-            message : true,
-            url : "captenoid"
-        })
     }
-    else{
+    catch(err){
         res.json({
             message : false
         })
+        console.log("failed");
     }
 });
 
