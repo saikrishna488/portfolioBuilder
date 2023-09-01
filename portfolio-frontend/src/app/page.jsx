@@ -28,7 +28,7 @@ export default function Home() {
         token = token[0].split("=");
         try {
           //login
-          fetch("http://localhost:5000/jwt", {
+          fetch("https://backend-portfoliobuilder.onrender.com/jwt", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
@@ -45,7 +45,7 @@ export default function Home() {
             }
 
             //userdetails
-            fetch('http://localhost:5000/userdata/' + data.username, {
+            fetch('https://backend-portfoliobuilder.onrender.com/userdata/' + data.username, {
               method: 'GET',
               headers: {
                 'Content-Type': 'application/json'

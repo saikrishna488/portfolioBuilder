@@ -14,7 +14,7 @@ const Score = () => {
     console.log(file);
     const formData = new FormData();
     formData.append('file', file);
-    fetch('http://localhost:5000/add', {
+    fetch('https://backend-portfoliobuilder.onrender.com/add', {
       method: 'POST',
       body: formData
     }).then(res => res.json())

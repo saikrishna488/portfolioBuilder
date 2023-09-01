@@ -37,7 +37,7 @@ const Portfolio = () => {
     const build = async () => {
         try {
             if (data.name) {
-                let res = await fetch('http://localhost:5000/portfolio',{
+                let res = await fetch('https://backend-portfoliobuilder.onrender.com/portfolio',{
                     method : 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -48,7 +48,7 @@ const Portfolio = () => {
                 let d = await res.json();
                 if(d.message == true){
                     toast("success");
-                    window.open("http://localhost:5000/"+d.url, '_blank');
+                    window.open("https://backend-portfoliobuilder.onrender.com/"+d.url, '_blank');
                 }
             }
         }
@@ -67,7 +67,7 @@ const Portfolio = () => {
                 {
                     portfolio.map((item) => (
                         <div className="port-card" onClick={() => build(item)} key={item.name}>
-                            <img src={"http://localhost:5000/" + item.url} alt="" />
+                            <img src={"https://backend-portfoliobuilder.onrender.com/" + item.url} alt="" />
                         </div>
                     ))
                 }
