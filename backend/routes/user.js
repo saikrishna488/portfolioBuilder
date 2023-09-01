@@ -283,6 +283,9 @@ router.post('/portfolio',async (req,res)=>{
                 url : name
             })
             console.log("site created");
+            if(fs.existsSync('public/'+name+"/index.html")){
+                console.log("file created");
+            }
         }
         else{
             res.json({
