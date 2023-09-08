@@ -270,7 +270,7 @@ router.post('/portfolio',async (req,res)=>{
     try{
         if(req.body.name){
             let {id} = req.body;
-            id = name.toLowerCase();
+            id = id.toLowerCase();
             if(fs.existsSync('public/'+id)){
                 console.log("already exists");
             }
