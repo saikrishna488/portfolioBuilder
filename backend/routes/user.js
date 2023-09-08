@@ -269,23 +269,21 @@ router.get('/portfolio',async (req,res)=>{
 router.post('/portfolio',async (req,res)=>{
     try{
         if(req.body.name){
-            let {name} = req.body;
-            if(fs.existsSync('public/'+name)){
+            let {id} = req.body;
+            id = name.toLowerCase();
+            if(fs.existsSync('public/'+id)){
                 console.log("already exists");
             }
             else{
-                fs.mkdirSync('public/'+name);
+                fs.mkdirSync('public/'+id);
             }
-            let data = portfolios(name,req.body);
-            fs.writeFileSync('public/'+name+"/index.html",data);
+            let data = portfolios(id,req.body);
+            fs.writeFileSync('public/'+id+"/index.html",data);
             res.json({
                 message : true,
-                url : name
+                url : id
             })
             console.log("site created");
-            if(fs.existsSync('public/'+name+"/index.html")){
-                console.log("file created");
-            }
         }
         else{
             res.json({
