@@ -3,6 +3,7 @@ import React, { useState, useContext, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { globalContext } from '../../contextApi/GlobalContext';
 import { useRouter } from 'next/navigation';
+import Render from '../../components/Render';
 
 const page = () => {
 
@@ -14,7 +15,7 @@ const page = () => {
     const [college, setCollege] = useState("");
     const [field, setField] = useState("");
     const [role, setRole] = useState("");
-    const { user, data, setData , setRefresh} = useContext(globalContext);
+    const { user, data, setData , refresh, setRefresh} = useContext(globalContext);
 
     const router = useRouter();
 
@@ -63,8 +64,8 @@ const page = () => {
                     if (data.successful == true) {
                         setData(data);
                         toast("Data updated now you can create portfolio/resume");
-                        router.push('/');
                         setRefresh(true);
+                        router.push('/');
                     }
                     else {
                         toast("Please login to continue");
@@ -83,6 +84,7 @@ const page = () => {
 
     return (
         <div className='userdata'>
+            {refresh ? <Render/> : null}
             <form className='userdata-form' onSubmit={submit}>
                 <input type="text" name="name" value={name} onChange={e => setName(e.target.value)} id="" placeholder='name (eg:harry)' required={true} />
 

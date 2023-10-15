@@ -3,12 +3,12 @@ import { useContext, useState } from 'react';
 import { globalContext } from '../../contextApi/GlobalContext';
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
+import Render from '../../components/Render';
 
 const page = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const { user, setUser , setRefresh} = useContext(globalContext);
-    const [loading, setLoading] = useState(false);
+    const { user, setUser, refresh, setRefresh } = useContext(globalContext);
     const router = useRouter();
 
     const submit = async (e) => {
@@ -32,8 +32,8 @@ const page = () => {
                         setUser(data);
                         document.cookie = `token=${data.token}`;
                         toast("login successful");
-                        router.push('/');
                         setRefresh(true);
+                        router.push('/');
                     }
                     else {
                         toast("login failed");
@@ -54,6 +54,7 @@ const page = () => {
 
     return (
         <div className='register'>
+            {refresh ? <Render/> : null}
             <form onSubmit={submit} className='form-register'>
                 <h4>Login</h4>
                 <input type="text" name="username" value={username} onChange={e => setUsername(e.target.value)} placeholder='username' id="" />

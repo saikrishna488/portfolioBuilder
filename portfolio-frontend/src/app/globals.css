@@ -1,19 +1,28 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
-body{
+@import url('https://fonts.googleapis.com/css2?family=Courgette&display=swap');
+
+body {
   margin: 0px;
   padding: 0px;
   font-family: 'Bebas Neue', sans-serif;
   background-color: #03001C !important;
-  -webkit-touch-callout: none; /* iOS Safari */
-  -webkit-user-select: none; /* Safari */
-   -khtml-user-select: none; /* Konqueror HTML */
-     -moz-user-select: none; /* Old versions of Firefox */
-      -ms-user-select: none; /* Internet Explorer/Edge */
-          user-select: none; /* Non-prefixed version, currently
+  -webkit-touch-callout: none;
+  /* iOS Safari */
+  -webkit-user-select: none;
+  /* Safari */
+  -khtml-user-select: none;
+  /* Konqueror HTML */
+  -moz-user-select: none;
+  /* Old versions of Firefox */
+  -ms-user-select: none;
+  /* Internet Explorer/Edge */
+  user-select: none;
+  /* Non-prefixed version, currently
                                 supported by Chrome, Edge, Opera and Firefox */
 }
-.header{
+
+.header {
   background-color: #03001C;
   padding: 10px;
   position: fixed;
@@ -21,21 +30,72 @@ body{
   z-index: 2;
   width: 100%;
 }
+.prof-img{
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  margin: 0px 10px;
+}
 
-.nav{
+.logo-box{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.ham{
+  background-color: #03001C;
+  padding: 10px;
+  position: fixed;
+  display: none;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  top: 0px;
+  z-index: 3;
+  width: 100%;
+  position: relative;
+}
+.ham-ul{
+  position: absolute;
+  list-style: none;
+  background-color: aliceblue;
+  width: 250px;
+  border-radius: 6px;
+  right : 0px;
+  padding: 5px;
+  top:0px;
+  display:none;
+}
+.ham-ul li{
+  color:white;
+  padding: 5px 3px;
+  border-bottom: 2px solid grey;
+  background-color: green;
+  border-radius: 6px;
+  margin: 5px 0px;
+  cursor: pointer;
+}
+
+.ham-ul li:hover{
+  scale: 1.1;
+}
+
+.nav {
   margin: 0px;
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: row;
+  justify-content: space-between;
   list-style: none;
   align-items: center;
   flex-wrap: wrap;
+  position: relative;
 }
 
-.nav li{
+.nav li {
   margin: 2px 10px;
 }
 
-.button{
+.button {
   background-color: green;
   border: none;
   outline: 1.5px solid black;
@@ -46,18 +106,19 @@ body{
   margin: 3px;
 }
 
-.button:hover{
+.button:hover {
   color: white;
   scale: 1.1;
 }
 
-.templates{
+.templates {
   border: none;
   padding: 5px 10px;
   cursor: pointer;
   color: aliceblue;
 }
-.templates:hover{
+
+.templates:hover {
   color: black;
   background-color: white;
   scale: 1.1;
@@ -65,63 +126,67 @@ body{
   border-radius: 8px;
 }
 
-#port{
+#port {
   margin-right: auto;
 }
 
-.nav img{
+.nav img {
   height: 50px;
   width: 50px;
   border-radius: 50%;
   margin: 0px 10px;
 }
 
-.mid{
-  /* background-color:#03001C; */
+.mid {
+  background-color: #03001C;
   display: flex;
   flex-direction: row;
-  justify-content: left;
+  justify-content: center;
   align-items: center;
   flex-wrap: wrap;
   color: white;
-  background-image: url('https://cdn.givingcompass.org/wp-content/uploads/2020/08/25125247/Nine-Tactics-to-Elevate-Yourself-to-Super-Board-Chair-Status.jpg');
+  /* background-image: url('https://cdn.givingcompass.org/wp-content/uploads/2020/08/25125247/Nine-Tactics-to-Elevate-Yourself-to-Super-Board-Chair-Status.jpg');
   background-repeat: no-repeat;
   background-size: cover;
+  position: relative; */
   width: 100%;
-  height: 500px;
 }
 
-.mid-left{
+.mid-left {
   width: 50%;
   padding: 10px;
-  color: black;
+  color: color;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
+  font-family: 'Courgette', cursive;
 }
 
-.mid-left p{
+.mid-left p {
   font-size: 20px;
   text-align: justify;
 }
 
-.mid-right{
+.mid-right {
   width: 50%;
   padding: 10px;
   position: relative;
   z-index: 1;
 }
 
-.mid-imgs img{
+.mid-imgs img {
   /* carousel */
-  /* height: 400px; */
+  border-radius: 16px;
+  height: 400px;
+  object-position: center;
   object-fit: cover;
 }
 
-.portfolio{
-  background-color:#03001C;
+.portfolio {
+  background-color: #03001C;
   padding: 10px;
   position: relative;
 }
 
-.holder{
+.holder {
   display: flex;
   flex-direction: row;
   /* justify-content: center; */
@@ -130,7 +195,7 @@ body{
   scroll-behavior: smooth;
 }
 
-.holder-resume{
+.holder-resume {
   display: flex;
   flex-direction: row;
   /* justify-content: center; */
@@ -139,14 +204,15 @@ body{
   scroll-behavior: smooth;
 }
 
-.holder::-webkit-scrollbar{
-  display: none;
-}
-.holder-resume::-webkit-scrollbar{
+.holder::-webkit-scrollbar {
   display: none;
 }
 
-.port-card{
+.holder-resume::-webkit-scrollbar {
+  display: none;
+}
+
+.port-card {
   height: 200px;
   width: 400px;
   background-color: burlywood;
@@ -155,7 +221,7 @@ body{
   border-radius: 8px;
 }
 
-.resume-card{
+.resume-card {
   height: 350px;
   width: 250px;
   background-color: burlywood;
@@ -163,18 +229,20 @@ body{
   cursor: pointer;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
-.port-card img{
+
+.port-card img {
   height: 200px;
   width: 400px;
   border-radius: 8px;
 }
-.resume-card img{
+
+.resume-card img {
   height: 350px;
   width: 250px;
   /* border-radius: 2px; */
 }
 
-.left-arrow{
+.left-arrow {
   position: absolute;
   cursor: pointer;
   left: 0px;
@@ -184,7 +252,8 @@ body{
   outline: 2px solid black;
   background-color: white;
 }
-.right-arrow{
+
+.right-arrow {
   position: absolute;
   right: 0px;
   top: 150px;
@@ -195,13 +264,13 @@ body{
   background-color: white;
 }
 
-.resume{
-  background-color:#03001C;
+.resume {
+  background-color: #03001C;
   padding: 10px;
   position: relative;
 }
 
-.score{
+.score {
   display: flex;
   flex-direction: column;
   height: 300px;
@@ -210,13 +279,14 @@ body{
   color: white;
 }
 
-#file{
+#file {
   background-color: black;
   padding: 10px;
   border: 2px solid black;
   border-radius: 8px;
   color: white;
 }
+
 #file::file-selector-button {
   font-weight: bold;
   color: white;
@@ -226,14 +296,14 @@ body{
   border-radius: 8px;
 }
 
-.form{
+.form {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-#btn{
+#btn {
   background-color: green;
   color: white;
   border: 1px solid black;
@@ -241,23 +311,23 @@ body{
   border-radius: 8px;
 }
 
-#btn:hover{
+#btn:hover {
   background-color: green;
   color: white;
   scale: 1.1;
 }
 
-.form-register{
+.form-register {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100%;
-  background-color:#03001C;
+  background-color: #03001C;
   color: white;
 }
 
-.form-register input{
+.form-register input {
   font-size: large;
   border-radius: 6px;
   padding: 4px 5px;
@@ -266,7 +336,7 @@ body{
   outline: none;
 }
 
-.login-button{
+.login-button {
   background-color: green;
   color: white;
   border-radius: 8px !important;
@@ -274,20 +344,20 @@ body{
   border: 2px solid white;
 }
 
-.user-box{
+.user-box {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  color: white;
+  color: black;
 }
 
-.user-box:hover + .user-2{
+.user-box:hover+.user-2 {
   display: flex;
 }
 
-.user-2{
+.user-2 {
   display: none;
   flex-direction: column;
   justify-content: center;
@@ -296,6 +366,7 @@ body{
   background-color: white;
   padding: 20px;
   top: 10px;
+  right: 10px;
   border-radius: 8px;
 }
 
@@ -303,7 +374,7 @@ body{
   display: flex;
 }
 
-.userdata{
+.userdata {
   height: 100vh;
   background-color: #03001C;
   margin-top: 50px;
@@ -311,14 +382,14 @@ body{
   width: 100%;
 }
 
-.userdata-form{
+.userdata-form {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.userdata-form input{
+.userdata-form input {
   margin: 10px 5px;
   border-radius: 8px;
   padding: 5px 5px;
@@ -326,61 +397,73 @@ body{
   border: none;
 }
 
-.heading{
+.heading {}
 
-}
-
-.heading:hover{
+.heading:hover {
   scale: 1.2;
   cursor: pointer;
   background-position: 0;
 }
 
 @media (max-width: 1250px) {
-  .mid{
+  .mid {
     flex-direction: column;
   }
-  .mid-left{
+
+  .mid-left {
     width: 100%;
     padding: 10px 20px;
   }
-  .mid-right{
+
+  .mid-right {
     width: 80%;
     padding: 10px 20px;
   }
 }
 
 @media (max-width: 800px) {
-  .mid{
-    
-  }
+  .mid {}
 
-  .mid-right{
+  .mid-right {
     width: 100%;
     padding: 10px 20px;
   }
 }
 
 @media (max-width: 534px) {
-  .nav{
+  .nav {
     justify-content: center;
     align-items: center;
-    flex-wrap:wrap;
+    flex-wrap: wrap;
     /* min-width: 400px; */
     padding: 0px 5px;
   }
-  body{
+
+  body {
     /* min-width: 400px !important; */
+  }
+
+  .mid {
+    /* background-color:#03001C; */
+
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  .header{
+    display: none !important;
+  }
+  .ham{
+    display: flex;
   }
 }
 
 @media (max-width: 459px) {
-  .title{
+  .title {
     margin-top: 150px !important;
   }
 }
 
-.title{
+.title {
   background-color: #03001C;
   color: white;
   margin-top: 100px;
