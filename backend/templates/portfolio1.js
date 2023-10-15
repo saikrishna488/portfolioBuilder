@@ -23,6 +23,7 @@ let str = `
         body {
             background-image: url('https://www.hostinger.com/tutorials/wp-content/uploads/sites/2/2022/04/web-developer-portfolio.webp');
             background-size: cover;
+            background-position: center;
             background-repeat: no-repeat;
             background-attachment: fixed;
             color: #fff;
