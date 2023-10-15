@@ -24,12 +24,12 @@ const Score = () => {
   }
   return (
     <div className='score'>
-      <h4>Upload your resume to check score</h4>
+      <h4 style={{textAlign:"center"}}>Upload your resume to check score</h4>
       <form onSubmit={submit} className='form'>
         <input type="file" id='file' name="upload" multiple={false} accept="application/pdf,application/vnd.ms-excel" />
         <input type="submit" id="btn" value="Check Score" />
       </form>
-      <h3>{ score!=0 ? "Your resume score is "+score : null} {score==40 ? '(average)' : score>40 && score<=50 ? "(Good)" : score>50 ? "(excellent)" :null}</h3>
+      <h5 style={{textAlign:"center"}} >{ score!=0 ? "Your resume score is "+score : null} {score==40 ? '(average)' : score>40 && score<=50 ? "(Good)" : score>50 ? "(excellent)" :null}</h5>
     </div>
   )
 }
