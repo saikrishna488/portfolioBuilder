@@ -9,6 +9,14 @@ const userSchema = mongoose.Schema({
         type : String,
         required : true
     },
+    field : {
+        type : String,
+        required : true
+    },
+    role : {
+        type : String,
+        required : true
+    },
     skills : {
         type : String,
         required : true

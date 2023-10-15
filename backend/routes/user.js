@@ -6,7 +6,7 @@ const User = require('../models/User');
 const UserDetails = require('../models/UserDetails');
 const jwt = require('jsonwebtoken');
 const Template = require('../models/templates');
-const portfolios = require('../templates/portfolios');
+const portfolios = require('../skeletons/portfolios');
 
 router.post('/add', async (req, res) => {
     const keywords = [
@@ -69,21 +69,45 @@ router.post('/add', async (req, res) => {
 router.post('/register', async (req, res) => {
     if (req.body.name) {
         let { username, name, email, password } = { ...req.body };
-        let user = await User.create({
-            username,
-            name,
-            email,
-            password
-        });
+        try {
+            let user = await User.findOne({ username });
+            console.log(user);
+            if (!user) {
+                let user = await User.create({
+                    username,
+                    name,
+                    email,
+                    password
+                });
 
-        user.save();
-        console.log(name + "user logged in")
+                user.save();
+                console.log(name + " user logged in")
+                res.json({
+                    login: true,
+                    username,
+                    name,
+                    email
+                })
+            }
+            else {
+                res.json({
+                    login: false
+                });
+            }
+        }
+        catch (err) {
+            console.log(err);
+            res.json({
+                login: false
+            });
+        }
+
+
+    }
+    else {
         res.json({
-            login: true,
-            username,
-            name,
-            email
-        })
+            login: false
+        });
     }
 });
 
@@ -163,29 +187,35 @@ router.post('/jwt', async (req, res) => {
 
 router.post('/userdata', async (req, res) => {
     if (req.body.id) {
-        let { name, description, skills, certifications, projects, college, id } = req.body;
+        let { name, description, field,role, skills, certifications, projects, college, id } = req.body;
         try {
             // check user exists or not
             let check = await User.findOne({ username: id });
             if (check) {
                 //updating to db
-                
-                let check2 = await UserDetails.findOne({id});
-                if(check2){
-                    let user2 = await UserDetails.findOneAndUpdate({id},{name,
+
+                let check2 = await UserDetails.findOne({ id });
+                if (check2) {
+                    let user2 = await UserDetails.findOneAndUpdate({ id }, {
+                        name,
                         description,
+                        field,
+                        role,
                         skills,
                         certifications,
                         projects,
                         college,
-                        id});
+                        id
+                    });
 
                     req.userDetails = user2;
                 }
-                else{
+                else {
                     let user = await UserDetails.create({
                         name,
                         description,
+                        field,
+                        role,
                         skills,
                         certifications,
                         projects,
@@ -200,12 +230,14 @@ router.post('/userdata', async (req, res) => {
                 res.json({
                     name,
                     description,
+                    field,
+                    role,
                     skills,
                     certifications,
                     projects,
                     college,
                     id,
-                    successful : true
+                    successful: true
                 });
 
             }
@@ -224,77 +256,77 @@ router.post('/userdata', async (req, res) => {
     }
 });
 
-router.get('/userdata/:id' ,async (req,res)=>{
+router.get('/userdata/:id', async (req, res) => {
     let id = req.params.id;
 
-    try{
-        if(id){
-            let user = await UserDetails.findOne({id});
-            if(user){
+    try {
+        if (id) {
+            let user = await UserDetails.findOne({ id });
+            if (user) {
                 res.json(user);
             }
-            else{
+            else {
                 res.json({
-                    message : "user data not found"
+                    message: "user data not found"
                 })
             }
         }
-        else{
+        else {
             res.json({
-                message : "user data not found"
+                message: "user data not found"
             })
         }
     }
-    catch(err){
+    catch (err) {
         console.log(err);
         res.json({
-            message : "user data not found"
+            message: "user data not found"
         })
     }
 });
 
-router.get('/portfolio',async (req,res)=>{
-    try{
+router.get('/portfolio', async (req, res) => {
+    try {
         let temp = await Template.find({});
         res.json(temp);
     }
-    catch(err){
+    catch (err) {
         console.log(err);
         res.json({
-            message : false
+            message: false
         })
     }
 });
 
-router.post('/portfolio',async (req,res)=>{
-    try{
-        if(req.body.name){
-            let {id} = req.body;
+router.post('/portfolio', async (req, res) => {
+    try {
+        if (req.body.name) {
+            let { id , tem} = req.body;
             id = id.toLowerCase();
-            if(fs.existsSync('public/'+id)){
+            if (fs.existsSync('public/' + id)) {
                 console.log("already exists");
             }
-            else{
-                fs.mkdirSync('public/'+id);
+            else {
+                fs.mkdirSync('public/' + id);
             }
-            let data = portfolios(id,req.body);
-            fs.writeFileSync('public/'+id+"/index.html",data);
+            let data = portfolios(tem,req.body);
+            fs.writeFileSync('public/' + id + "/index.html", data);
             res.json({
-                message : true,
-                url : id
+                message: true,
+                url: id
             })
             console.log("site created");
         }
-        else{
+        else {
             res.json({
-                message : false
+                message: false
             })
             console.log("failed");
         }
     }
-    catch(err){
+    catch (err) {
         res.json({
-            message : false
+            message: false
         })
         console.log(err);
     }
