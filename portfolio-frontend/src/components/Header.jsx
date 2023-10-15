@@ -6,7 +6,7 @@ import { globalContext } from '../contextApi/GlobalContext';
 const Header = () => {
     const router = useRouter();
     const pathname = usePathname();
-    const { user, setUserdata } = useContext(globalContext);
+    const { user, setUser } = useContext(globalContext);
 
     const home = () => {
         router.push('/');
@@ -21,7 +21,7 @@ const Header = () => {
 
     const logout = ()=>{
         document.cookie = "token='';";
-        setUserdata({});
+        setUser({});
 
     }
     if (pathname == '/register' || pathname == '/login' || pathname == '/userdata') {

@@ -2,6 +2,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { globalContext } from '../../contextApi/GlobalContext';
+import { useRouter } from 'next/navigation';
 
 const page = () => {
 
@@ -11,20 +12,24 @@ const page = () => {
     const [certifications, setCertifications] = useState("");
     const [projects, setProjects] = useState("");
     const [college, setCollege] = useState("");
-    const { user, data, setData } = useContext(globalContext);
+    const [field, setField] = useState("");
+    const [role, setRole] = useState("");
+    const { user, data, setData , setRefresh} = useContext(globalContext);
+
+    const router = useRouter();
 
     useEffect(() => {
-        // if (data.name) {
-        //     setName(data.name);
-        //     setDescription(data.description);
-        //     setSkills(data.skills);
-        //     setCertifications(data.certifications);
-        //     setProjects(data.projects);
-        //     setCollege(data.college);
-        // }
-    })
-
-
+        if (data.name) {
+            setName(data.name);
+            setDescription(data.description);
+            setSkills(data.skills);
+            setCertifications(data.certifications);
+            setProjects(data.projects);
+            setCollege(data.college);
+            setField(data.field);
+            setRole(data.role);
+        }
+    },[])
 
     const submit = (e) => {
         e.preventDefault();
@@ -36,6 +41,8 @@ const page = () => {
                 certifications,
                 projects,
                 college,
+                field,
+                role,
                 id: user.username
             }
 
@@ -44,7 +51,7 @@ const page = () => {
                 if (!user.username) {
                     throw new Error("not logged in");
                 }
-                fetch('https://backend-portfoliobuilder.onrender.com/userdata', {
+                fetch(process.env.NEXT_PUBLIC_BACKEND_URL+'/userdata', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -56,6 +63,8 @@ const page = () => {
                     if (data.successful == true) {
                         setData(data);
                         toast("Data updated now you can create portfolio/resume");
+                        router.push('/');
+                        setRefresh(true);
                     }
                     else {
                         toast("Please login to continue");
@@ -77,13 +86,17 @@ const page = () => {
             <form className='userdata-form' onSubmit={submit}>
                 <input type="text" name="name" value={name} onChange={e => setName(e.target.value)} id="" placeholder='name (eg:harry)' required={true} />
 
+                <input type="text" name="field" value={field} onChange={e => setField(e.target.value)} id="" placeholder='Field (eg:computer science)' required={true} />
+
+                <input type="text" name="role" value={role} onChange={e => setRole(e.target.value)} id="" placeholder='Role (eg:Designing)' required={true} />
+
                 <input type="text" name="description" value={description}  onChange={e => setDescription(e.target.value)} id="" placeholder='description' required={true} />
 
-                <input type="text" name="skills" value={skills}  onChange={e => setSkills(e.target.value)} id="" placeholder='skills' required={true} />
+                <input type="text" name="skills" value={skills}  onChange={e => setSkills(e.target.value)} id="" placeholder='Skills - eg:(1,2,3)' required={true} />
 
-                <input type="text" name="certifications" value={certifications}  onChange={e => setCertifications(e.target.value)} id="" placeholder='certifications' required={true} />
+                <input type="text" name="certifications" value={certifications}  onChange={e => setCertifications(e.target.value)} id="" placeholder='Certifications - eg:(1,2,3)' required={true} />
 
-                <input type="text" name="projects" value={projects} onChange={e => setProjects(e.target.value)} id="" placeholder='projects' required={true} />
+                <input type="text" name="projects" value={projects} onChange={e => setProjects(e.target.value)} id="" placeholder='Projects - eg:(1,2,3)' required={true} />
 
                 <input type="text" name="college" value={college} onChange={e => setCollege(e.target.value)} id="" placeholder='college' required={true} />
 
@@ -93,4 +106,4 @@ const page = () => {
     )
 }
 
-export default page
+export default page;

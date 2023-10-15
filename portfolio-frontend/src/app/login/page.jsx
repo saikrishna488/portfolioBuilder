@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 const page = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const { user, setUserdata } = useContext(globalContext);
+    const { user, setUser , setRefresh} = useContext(globalContext);
     const [loading, setLoading] = useState(false);
     const router = useRouter();
 
@@ -20,7 +20,7 @@ const page = () => {
                     password: password
                 };
                 try {
-                    let res = await fetch('https://backend-portfoliobuilder.onrender.com/login', {
+                    let res = await fetch(process.env.NEXT_PUBLIC_BACKEND_URL+'/login', {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json",
@@ -29,10 +29,11 @@ const page = () => {
                     });
                     let data = await res.json();
                     if (data.login == true) {
-                        setUserdata(data);
+                        setUser(data);
                         document.cookie = `token=${data.token}`;
                         toast("login successful");
                         router.push('/');
+                        setRefresh(true);
                     }
                     else {
                         toast("login failed");

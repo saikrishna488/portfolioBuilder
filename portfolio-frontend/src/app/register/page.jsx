@@ -9,7 +9,7 @@ const page = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { user, setUserdata } = useContext(globalContext);
+  const { user, setUser } = useContext(globalContext);
   const router = useRouter();
 
 
@@ -27,7 +27,7 @@ const page = () => {
           };
 
           try {
-            let res = await fetch('https://backend-portfoliobuilder.onrender.com/register', {
+            let res = await fetch(process.env.NEXT_PUBLIC_BACKEND_URL+'/register', {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
@@ -38,6 +38,9 @@ const page = () => {
             if (data.login == true) {
               toast("Please login to continue");
               router.push('/');
+            }
+            else{
+              toast("username already exists");
             }
           }
           catch (err) {

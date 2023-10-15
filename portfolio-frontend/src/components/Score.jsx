@@ -14,7 +14,7 @@ const Score = () => {
     console.log(file);
     const formData = new FormData();
     formData.append('file', file);
-    fetch('https://backend-portfoliobuilder.onrender.com/add', {
+    fetch(process.env.NEXT_PUBLIC_BACKEND_URL+'/add', {
       method: 'POST',
       body: formData
     }).then(res => res.json())

@@ -6,21 +6,24 @@ export const globalContext = createContext();
 const GlobalContext = ({children}) => {
 
     const [user,setUser] = useState({});
-    const [data,setDetails] = useState({});
+    const [data,setData] = useState({});
+    const [refresh,setRefresh] = useState(false);
 
-    const setUserdata = (data)=>{
-        setUser(data);
-    }
+    // const setUserdata = (data)=>{
+    //     setUser(data);
+    // }
 
-    const setData = (data)=>{
-        setDetails(data);
-    }
+    // const setData = (data)=>{
+    //     setDetails(data);
+    // }
     return (
         <globalContext.Provider value={{
             user,
-            setUserdata,
+            setUser,
             data,
-            setData
+            setData,
+            refresh,
+            setRefresh
         }}
         >
             {children}

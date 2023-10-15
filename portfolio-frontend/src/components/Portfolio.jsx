@@ -10,7 +10,7 @@ const Portfolio = () => {
     const [portfolio, setPortfolio] = useState([]);
     useEffect(() => {
         const fetchAll = () => {
-            fetch('https://backend-portfoliobuilder.onrender.com/portfolio', {
+            fetch(process.env.NEXT_PUBLIC_BACKEND_URL+'/portfolio', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json'
@@ -23,37 +23,42 @@ const Portfolio = () => {
         }
 
         fetchAll();
-    })
+    },[]);
     const leftArrow = () => {
         let left = document.getElementsByClassName('holder')[0];
         left.scrollBy(-360, 0);
     }
-
     const rightArrow = () => {
         let right = document.getElementsByClassName('holder')[0];
         right.scrollBy(360, 0);
     }
 
-    const build = async () => {
+    const build = async (item) => {
         try {
             if (data.id) {
+                let reqData = {
+                    tem : item.name,
+                    ...data
+                }
                 console.log(data);
-                let res = await fetch('https://backend-portfoliobuilder.onrender.com/portfolio',{
+                let res = await fetch(process.env.NEXT_PUBLIC_BACKEND_URL+'/portfolio',{
                     method : 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body : JSON.stringify(data)
+                    body : JSON.stringify(reqData)
                 });
 
                 let d = await res.json();
                 if(d.message == true){
                     toast("success");
-                    window.open("https://backend-portfoliobuilder.onrender.com/"+d.url, '_blank');
+                    console.log(d);
+                    window.open(process.env.NEXT_PUBLIC_BACKEND_URL+"/"+d.url, '_blank');
                 }
             }
             else{
-                console.log("err");
+                console.log("err occured",data);
+                toast("Please fill your data in profile section");
             }
         }
         catch(err){
@@ -72,25 +77,10 @@ const Portfolio = () => {
                 {
                     portfolio.map((item) => (
                         <div className="port-card" onClick={() => build(item)} key={item.name}>
-                            <img src={"https://backend-portfoliobuilder.onrender.com/" + item.url} alt="" />
+                            <img src={process.env.NEXT_PUBLIC_BACKEND_URL+"/" + item.url} alt="" />
                         </div>
                     ))
                 }
-                <div className="port-card">
-                    <img src="https://www.creative-tim.com/blog/content/images/size/w960/wordpress/2019/03/The-Future-Web-Design-Multipurpose-HTML5-Website-Template.png" alt="" />
-                </div>
-                <div className="port-card">
-                    <img src="https://themewagon.com/wp-content/uploads/2022/12/Meyawo.png" alt="" />
-                </div>
-                <div className="port-card">
-                    <img src="https://www.creative-tim.com/blog/content/images/size/w960/wordpress/2019/03/The-Future-Web-Design-Multipurpose-HTML5-Website-Template.png" alt="" />
-                </div>
-                <div className="port-card">
-                    <img src="https://themewagon.com/wp-content/uploads/2022/12/Meyawo.png" alt="" />
-                </div>
-                <div className="port-card">
-                    <img src="https://www.creative-tim.com/blog/content/images/size/w960/wordpress/2019/03/The-Future-Web-Design-Multipurpose-HTML5-Website-Template.png" alt="" />
-                </div>
             </div>
         </div>
     )

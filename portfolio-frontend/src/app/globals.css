@@ -77,18 +77,24 @@ body{
 }
 
 .mid{
-  background-color:#03001C;
+  /* background-color:#03001C; */
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: left;
   align-items: center;
   flex-wrap: wrap;
   color: white;
+  background-image: url('https://cdn.givingcompass.org/wp-content/uploads/2020/08/25125247/Nine-Tactics-to-Elevate-Yourself-to-Super-Board-Chair-Status.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 500px;
 }
 
 .mid-left{
   width: 50%;
   padding: 10px;
+  color: black;
 }
 
 .mid-left p{
@@ -105,7 +111,8 @@ body{
 
 .mid-imgs img{
   /* carousel */
-  height: 400px;
+  /* height: 400px; */
+  object-fit: cover;
 }
 
 .portfolio{
@@ -359,11 +366,11 @@ body{
     justify-content: center;
     align-items: center;
     flex-wrap:wrap;
-/*     min-width: 400px; */
+    /* min-width: 400px; */
     padding: 0px 5px;
   }
   body{
-/*     min-width: 400px !important; */
+    /* min-width: 400px !important; */
   }
 }
 
