@@ -66,6 +66,10 @@ router.post('/add', async (req, res) => {
     });
 });
 
+router.get('/',(req,res)=>{
+    res.send("Api is online");
+});
+
 router.post('/register', async (req, res) => {
     if (req.body.name) {
         let { username, name, email, password } = { ...req.body };
